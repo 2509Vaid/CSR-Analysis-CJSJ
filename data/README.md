@@ -28,3 +28,7 @@ Population of each region in the dataset, from the Office of the Registrar Gener
 ## external/niti_mpi_2023_headcount.csv
 
 Share of each state or union territory's population that is multidimensionally poor in 2019–21 (NFHS-5), from NITI Aayog, *National Multidimensional Poverty Index: A Progress Review 2023*. Values were transcribed from the report's state-wise headcount chart and cross-checked against its chart of percentage-point changes since 2015–16. The report treats Dadra and Nagar Haveli and Daman and Diu as one union territory (`dnh&dd`).
+
+## external/fc15_devolution_shares_2021_26.csv
+
+Each state's share (%) of the divisible pool of central taxes for 2021–26, as recommended by the Fifteenth Finance Commission (28 states; union territories are not included). Values from the Commission's report as tabulated by PRS Legislative Research, "Report of the 15th Finance Commission for 2021-26" (https://prsindia.org/policy/report-summaries/report-15th-finance-commission-2021-26). The shares sum to 100. The formula gives 45% weight to income distance, 15% to 2011 population, 15% to area, 10% to forest and ecology, 12.5% to demographic performance, and 2.5% to tax and fiscal effort.

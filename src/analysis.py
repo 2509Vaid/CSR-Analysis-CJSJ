@@ -126,5 +126,34 @@ for grp in ["PSU", "NON-PSU"]:
     s = state_totals(df[df.psu == grp], pop)
     log(f"{grp} top destinations: " + ", ".join(f"{k.title()} {v:.1%}" for k, v in (s / s.sum()).nlargest(5).items()))
 
+
+# ---------------------------------------------------------------- Finance Commission benchmark
+fc = pd.read_csv(ROOT / "data" / "external" / "fc15_devolution_shares_2021_26.csv").set_index("state_key")["fc15_share_pct_2021_26"]
+assert abs(fc.sum() - 100) < 1e-6 and len(fc) == 28
+
+
+def dissim(a, b):
+    """Dissimilarity index: % of the total that must move for distribution a to match b."""
+    return 0.5 * np.abs(a - b).sum()
+
+
+s28 = state_totals(df, pop)[fc.index]
+csr_sh = s28 / s28.sum() * 100
+pop_sh = pop[fc.index] / pop[fc.index].sum() * 100
+log("\n== Benchmark: Fifteenth Finance Commission devolution shares (28 states)")
+log(f"28 states' share of assigned spending: {s28.sum() / A:.1%}")
+log(f"Spearman, CSR share vs FC share: rho = {stats.spearmanr(csr_sh, fc)[0]:.2f}")
+log(f"Dissimilarity: CSR vs FC {dissim(csr_sh, fc):.1f}%; CSR vs population {dissim(csr_sh, pop_sh):.1f}%; "
+    f"FC vs population {dissim(fc, pop_sh):.1f}%")
+log(f"States receiving less than their FC share: {(csr_sh < fc).sum()} of 28")
+for k in ["bihar", "uttar pradesh", "maharashtra"]:
+    log(f"   {k.title()}: actual {s28[k]:,.0f} crore; if divided by FC shares {fc[k] / 100 * s28.sum():,.0f} crore")
+for grp in ["PSU", "NON-PSU"]:
+    sg = state_totals(df[df.psu == grp], pop)[fc.index]
+    log(f"   {grp}: dissimilarity vs FC {dissim(sg / sg.sum() * 100, fc):.1f}%")
+bench = pd.DataFrame({"csr_share_pct": csr_sh, "fc15_share_pct": fc, "population_share_pct": pop_sh,
+                      "csr_crore": s28, "csr_crore_if_fc_shares": fc / 100 * s28.sum()})
+bench.round(3).to_csv(OUT / "finance_commission_benchmark.csv", index_label="state_key")
+
 (OUT / "results.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
 print(f"\nWrote results to {OUT}")

@@ -48,3 +48,14 @@ Non-PSU                 179160.978      121370.167       0.601  0.485        -0.
 Excluding ten largest   180483.933      127019.467       0.559  0.441        -0.405       0.014        0.177                 86.287
 PSU top destinations: Odisha 15.3%, Delhi 9.0%, Maharashtra 8.3%, Assam 7.7%, Uttar Pradesh 6.4%
 NON-PSU top destinations: Maharashtra 27.8%, Karnataka 9.8%, Gujarat 9.4%, Tamil Nadu 7.7%, Delhi 5.3%
+
+== Benchmark: Fifteenth Finance Commission devolution shares (28 states)
+28 states' share of assigned spending: 93.2%
+Spearman, CSR share vs FC share: rho = 0.76
+Dissimilarity: CSR vs FC 42.3%; CSR vs population 33.4%; FC vs population 12.2%
+States receiving less than their FC share: 19 of 28
+   Bihar: actual 1,387 crore; if divided by FC shares 13,705 crore
+   Uttar Pradesh: actual 7,433 crore; if divided by FC shares 24,443 crore
+   Maharashtra: actual 35,835 crore; if divided by FC shares 8,607 crore
+   PSU: dissimilarity vs FC 35.3%
+   NON-PSU: dissimilarity vs FC 47.3%
