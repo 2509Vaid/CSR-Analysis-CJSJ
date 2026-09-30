@@ -75,9 +75,6 @@ Full output, including every sensitivity check, is in `results/results.txt`.
 - Populations are from the 2011 Census, the most recent complete census.
 - The poverty comparison is ecological (state averages). It cannot show whether projects reached poor households within a state, and it does not establish causation.
 
-## Use of AI
-
-The code in this repository was written with Claude (Anthropic; Claude Opus 5.5, accessed via claude.ai, 2026). The author ran it on the dataset and checked the results.
 
 ## Citation
 
